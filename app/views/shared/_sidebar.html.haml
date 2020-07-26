@@ -1,0 +1,27 @@
+%header.sidebar
+  = link_to root_path, :class => "sidebar__branding sidebar__section" do
+    .sidebar__container.sidebar__logo
+      = image_tag "bound.svg", :class => "sidebar__logoIcon"
+      %h1.sidebar__logoText
+        DNS Manager
+  - if changes_pending > 0
+    .sidebar__apply
+      .sidebar__container
+        = link_to "Apply #{pluralize(changes_pending, "Change")}", publish_path, :class => "button button--blocked button--green"
+  %nav.sidebar__nav
+    %ul.sidebar__menu
+      %li.sidebar__menuItem{:class => ("is-active" if @active_nav == :zones)}
+        = link_to root_path, :class => "sidebar__menuLink" do
+          = image_tag "globe.svg", :alt => "Zones Icon", :class => "sidebar__menuLinkIcon"
+          %span.sidebar__menuLinkText
+            Zones
+  %ul.sidebar__footer
+    %p
+      %span.text--smaller
+        Logged in as:
+      %br
+      %strong #{current_user.description}
+    %p.sidebar__footerLogout.text--smaller
+      = link_to "Logout", logout_path, :method => :delete
+  .sidebar__powered.text--smaller
+    Powered by #{link_to "PDNS.WIN", "https://pdns.win", :class => "sidebar__poweredLink"}

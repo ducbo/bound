@@ -1,0 +1,44 @@
+- @page_title = @zone.name
+- breadcrumb "Zones", zones_path
+- header_action "Add Record", new_zone_record_path(@zone), :color => :green
+- header_action "Export", zone_file_zone_path(@zone), :color => :blue , :target => "_blank"
+- header_action "Import", import_zone_path(@zone), :color => :gray
+
+= render_header @zone.description
+
+.container
+  - if @records.any?
+    .module
+      = text_field_tag :q, "", :autofocus => true, :class => "formControl js-searchObjects", :placeholder => "Search for a record&hellip;".html_safe
+  .box.module
+    %table.zoneTable
+      %thead.zoneTable__header
+        %tr
+          %td.zoneTable__col.zoneTable__col--default
+            Type
+          %td.zoneTable__col.zoneTable__col--default
+            Name
+          %td.zoneTable__col.zoneTable__col--default
+            TTL
+          %td.zoneTable__col.zoneTable__col--data
+            Data
+      %tbody
+        - if @records.empty?
+          %tr
+            %td{:colspan => 4} There are no records for this zone yet.
+        - else
+          - @records.each_with_index do |record, index|
+            %tr.boxItem.zoneTable__row.js-zoneRecord.js-objectItem{:class => ("is-hovered" if index.zero?), :data => {:url => edit_zone_record_path(@zone, record)}}
+              %td.zoneTable__col.zoneTable__col--default
+                = record_type_tag record.type
+              %td.zoneTable__col.zoneTable__col--default.js-objectItem__text
+                = record.name || "@"
+              %td.zoneTable__col.zoneTable__col--default
+                = record.ttl
+              %td.zoneTable__col.zoneTable__col--data
+                = record.data
+    %p.emptyState.is-hidden.js-emptyState
+      No records match your search query…
+  .module.u-textRight
+    = link_to "Delete Zone", @zone, :class => "button button--red", :data => {:confirm => "Are you sure you wish to remove this zone?"}, :method => :delete
+

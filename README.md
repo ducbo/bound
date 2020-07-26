@@ -1,0 +1,30 @@
+# Bound
+
+Bound is a web-based frontend for managing DNS zones. It sits on top of an
+existing BIND installation and exports appropriately formatted zone files and
+handles configuration reloads when needed.
+
+![Screenshot](https://img.duc.pw/dns.png)
+
+## Installation
+
+1. `git clone https://github.com/ducbo/bound /opt/bound`
+2. `cp config/bound.example.yml config/bound.yml`
+3.  `nano config/bound.yml`
+4. `bundle`
+5. `bundle exec rake db:schema:load assets:precompile`
+6. `bundle exec foreman start`
+
+## Upgrade
+
+1. Stop the running server
+2. `git pull origin master`
+3. `bundle`
+4. `bundle exec rake assets:precompile db:migrate`
+5. Start the server
+
+## GitHub Support
+This app supports using omniauth to connect your Github. By default I use github but you can use any omniauth gem.
+
+## Notes
+* macOS Mojave needs to run `gem install mysql2 -v '0.4.10' -- --with-ldflags=-L/usr/local/opt/openssl/lib --with-cppflags=-I/usr/local/opt/openssl/include` to install mysql2

@@ -1,0 +1,13 @@
+.container
+  = form_for @zone, :html => {:class => "form"} do |f|
+    = f.error_messages
+    .box.island.island--form.module
+      .formGroup
+        = f.label :name, "Name", :class => "formLabel"
+        = f.text_field :name, :autofocus => @zone.new_record?, :class => "formControl", :disabled => @zone.persisted?, :placeholder => "e.g. example.com"
+    .formFooter.module.module--push
+      = f.submit "Save", :class => "button button--green", :data => {:disable_with => "Saving"}
+      %p.formFooter__subText
+        or
+        = link_to "go back", (@zone.persisted? ? @zone : zones_path), :class => "formFooter__link"
+ 

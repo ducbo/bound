@@ -1,0 +1,38 @@
+.changeListing {
+  align-items: flex-start;
+  margin: 0 0 0 4px;
+  display: flex;
+}
+
+.changeListing--generic {
+  box-shadow: -4px 0 0 #0d97ff;
+}
+
+.changeListing--recordAdded,
+.changeListing--zoneAdded {
+  box-shadow: -4px 0 0 #52bb55;
+}
+
+.changeListing--recordDataChanged,
+.changeListing--zoneAttributeChanged {
+  box-shadow: -4px 0 0 #0d97ff;
+}
+
+.changeListing--recordDeleted,
+.changeListing--zoneDeleted {
+  box-shadow: -4px 0 0 #e9493e;
+}
+
+.changeListing_desc {
+  flex: 1 1 auto;
+  margin: 0 12px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.changeListing__timestamp {
+  color: #777777;
+  flex: 0 0 auto;
+  font-size: 14px;
+  white-space: nowrap;
+}

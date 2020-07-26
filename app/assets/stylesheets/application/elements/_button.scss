@@ -1,0 +1,63 @@
+.button {
+  -webkit-appearance: none;
+  background: #383838;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  font-weight: 700;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+/**
+ * Modifiers that change the display type of the button.
+ */
+
+.button--blocked {
+  display: block;
+}
+
+/**
+ * Alternative button sizes.
+ */
+
+.button--small {
+  font-size: 14px;
+  line-height: 22px;
+  padding: 4px 8px;
+}
+
+.button--large {
+  font-size: 18px;
+  line-height: 26px;
+  padding: 12px 16px;
+}
+
+/**
+ * Modifiers that change the color of the button.
+ * To add a new button, simply add a name and hex color value to the map below.
+ */
+
+$button-styles: (
+  blue: #0d97ff,
+  green: #52bb55,
+  orange: #f87b13,
+  red: #e9493e
+);
+
+@each $name, $color in $button-styles {
+  .button--#{$name} {
+    background-color: $color;
+
+    &:hover {
+      background-color: lighten($color, 5%);
+    }
+
+    &:active {
+      background-color: darken($color, 5%);
+    }
+  }
+}
