@@ -155,16 +155,8 @@ class Zone < ApplicationRecord
     return false unless Bound.config.replication
     String.new.tap do |s|
       s << "zone \"#{name}\" {\n"
-      s << "  type slave;\n"
-      s << "  file \"/var/lib/bind/#{name}\";\n"
-      if notify = Bound.config.replication&.notify&.slave
-        s << "  notify #{notify};\n"
-      end
-      s << "  masters {\n"
-      for master in Bound.config.replication.masters
-        s << "    #{master};\n"
-      end
-      s << "  };\n"
+      s << "  type master;\n"
+      s << "  file \"#{zone_file_path}\";\n"
       s << "};"
     end
   end
