@@ -148,7 +148,8 @@ module Bound
         end
 
         # Upload a new file
-        ssh.session.sftp.file.open(slave.zone_file_path, 'w') { |f| f.write(clauses) }
+        ssh.session.sftp.upload('/etc/bind/zones', '/etc/bind/zones')
+        ssh.session.sftp.file.open('/etc/bind/named.conf.local', 'w') { |f| f.write(clauses) }
         puts "   Uploaded new zone file to #{slave.zone_file_path}".green
 
         # Reload configuration
@@ -165,4 +166,3 @@ module Bound
 
   end
 end
-
