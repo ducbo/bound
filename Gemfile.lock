@@ -119,7 +119,7 @@ GEM
     omniauth (1.4.3)
       hashie (>= 1.2, < 4)
       rack (>= 1.6.2, < 3)
-    puma (3.6.0)
+    puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
     rack-test (0.6.3)
@@ -199,7 +199,7 @@ DEPENDENCIES
   nilify_blanks
   nissh
   omniauth
-  puma (~> 3.0)
+  puma (~> 3.12)
   rails (~> 5.0.0)
   sass-rails (~> 5.0)
   turbolinks (~> 5)
