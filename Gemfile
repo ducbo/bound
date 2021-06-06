@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.2.0'
 gem 'mysql2', '>= 0.4.10', '< 0.5'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -29,6 +29,5 @@ if Bound.yaml_config['auth'] && strategy = Bound.yaml_config['auth']['strategy']
 end
 
 group :development, :test do
-  gem 'byebug'
   gem 'annotate'
 end
