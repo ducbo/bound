@@ -1,0 +1,22 @@
+- @page_title = "Publish Changes"
+
+- if @changes.any?
+  - header_action "Apply Changes", publish_path, :color => :black, :method => :post
+
+= render_header "Publish Changes"
+
+.container
+  - if @changes.empty?
+    %p.box.emptyState
+      There are currently no changes pending.
+      %br
+      %br
+      #{link_to "Force Reload All Zone Files", publish_path, :class => "button button--small button--secondary--ghost", :method => :post}
+  - else
+    %ul.box
+      - @changes.each do |change|
+        %li.boxItem.changeListing.island{:class => "changeListing--#{change.event.camelize(:lower)}"}
+          %p.changeListing_desc
+            = change.description.gsub(/\[(.*?)\]/) { content_tag(:b, h($1)) }.html_safe
+          %p.changeListing__timestamp
+            = change.created_at.to_s(:long)

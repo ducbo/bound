@@ -1,0 +1,42 @@
+.formControl {
+  -webkit-appearance: none;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  display: block;
+  font: inherit;
+  outline: 0;
+  padding: 6px 8px;
+  width: 100%;
+  border-radius: 6px;
+  transition: border 175ms;
+  &:focus {
+    border-color: #333333;
+  }
+}
+
+.formControl[disabled] {
+  color: #a9a9a9;
+  background-color: #fafafa;
+  border-top-color: #eaeaea;
+  cursor: not-allowed;
+}
+
+.formControl--auto {
+  width: auto;
+}
+
+.formControl--mono {
+  font-family: "Menlo", "Monaco", monospace, monospace;
+  white-space: nowrap;
+}
+
+.formControl--select {
+  background-image: image-url("select.svg");
+  background-position: right 8px top 50%;
+  background-size: auto 8px;
+  background-repeat: no-repeat;
+}
+
+.formControl--textarea {
+  resize: vertical;
+}

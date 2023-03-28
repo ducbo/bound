@@ -1,0 +1,43 @@
+.container
+  = form_for @zone, :html => {:class => "form"} do |f|
+    = f.error_messages
+    .box.island.island--form.module
+      .formGroup
+        = f.label :name, "Name", :class => "formLabel"
+        = f.text_field :name, :autofocus => @zone.new_record?, :class => "formControl", :disabled => @zone.persisted?, :placeholder => "e.g. example.com"
+      .formGroup
+        = f.label :primary_ns, "Primary Nameserver", :class => "formLabel"
+        %p.formHint
+          This is the primary name server address for this zone.
+          Leave this blank to use the default primary name server address.
+        = f.text_field :primary_ns, :class => "formControl", :placeholder => Bound.config.dns_defaults.primary_ns
+      .formGroup
+        = f.label :email_address, "E-Mail Address", :class => "formLabel"
+        %p.formHint
+          This is the e-mail address which will be published in the zone's SOA record and should be entered as normal.
+          Leave this blank to use the default e-mail address.
+        = f.text_field :email_address, :class => "formControl", :placeholder => Bound.config.dns_defaults.email_address
+    - if @zone.persisted?
+      .box.island.island--form.module
+        .formGroup.formRow
+          .formRow__col
+            = f.label :refresh_time, "Refresh Time", :class => "formLabel"
+            = f.text_field :refresh_time, :class => "formControl", :placeholder => Bound.config.dns_defaults.refresh_time
+          .formRow__col
+            = f.label :retry_time, "Retry Time", :class => "formLabel"
+            = f.text_field :retry_time, :class => "formControl", :placeholder => Bound.config.dns_defaults.retry_time
+          .formRow__col
+            = f.label :expiration_time, "Expiration Time", :class => "formLabel"
+            = f.text_field :expiration_time, :class => "formControl", :placeholder => Bound.config.dns_defaults.expiration_time
+          .formRow__col
+            = f.label :max_cache, "Max Cache", :class => "formLabel"
+            = f.text_field :max_cache, :class => "formControl", :placeholder => Bound.config.dns_defaults.max_cache
+          .formRow__col
+            = f.label :ttl, "TTL", :class => "formLabel"
+            = f.text_field :ttl, :class => "formControl", :placeholder => Bound.config.dns_defaults.ttl
+    .formFooter.module.module--push
+      = f.submit "Save Zone", :class => "button button--green", :data => {:disable_with => "Saving"}
+      %p.formFooter__subText
+        - if @zone.persisted?
+          = link_to "Delete Zone", @zone, :class => "button button--red", :data => {:confirm => "Are you sure you wish to remove this zone?"}, :method => :delete
+      = link_to "Cancel", (@zone.persisted? ? @zone : zones_path), :class => "button button--secondary"

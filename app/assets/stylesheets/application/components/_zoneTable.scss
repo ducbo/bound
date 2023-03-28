@@ -1,0 +1,94 @@
+.zoneTable {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  padding: 12px
+}
+
+.zoneTable__col {
+  line-height: 20px;
+  vertical-align: top;
+
+  .zoneTable__header & {
+    color: #777777;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    &:first-of-type {
+      border-left: 1px solid #eaeaea;
+      border-radius: 6px 0px 0px 6px;
+      padding: 8px 12px 8px 24px;
+    }
+
+    &:last-of-type {
+      border-right: 1px solid #eaeaea;
+      border-radius: 0px 6px 6px 0px;
+      padding: 8px 24px 8px 12px;
+    }
+  }
+
+  .zoneTable__row & {
+    padding: 12px;
+
+    &:first-of-type {
+      padding: 12px 12px 12px 24px;
+    }
+
+    &:last-of-type {
+      padding: 12px 24px 12px 12px;
+    }
+  }
+}
+
+.zoneTable__row {
+  .zoneTable__col {
+    line-height: 32px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  &:last-of-type {
+    .zoneTable__col {
+      border-bottom: none;
+    }
+  }
+}
+
+.zoneTable__col--default {
+  min-width: 108px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.zoneTable__col--data {
+  width: 99%;
+  word-break: break-all;
+
+}
+
+.zoneTable__header {
+  border: 1px solid #eaeaea;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  display: table-header-group;
+  font-size: 14px;
+  height: 40px;
+  vertical-align: middle;
+  border-radius: 6px;
+}
+
+.zoneTable__link {
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    background: #fafafa;
+    padding: 2px 0;
+  }
+}
+
+.zoneTable__row {
+  transition: background 175ms;
+  background: rgba(255,255,255,0);
+}

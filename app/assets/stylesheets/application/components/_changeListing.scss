@@ -1,0 +1,59 @@
+.changeListing {
+  align-items: flex-start;
+  margin: 0 0 0 4px;
+  display: flex;
+  &::before{
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    -moz-border-radius: 7.5px;
+    -webkit-border-radius: 7.5px;
+    border-radius: 7.5px;
+    margin: auto;
+    margin-left: 0px;
+    margin-right: 6px;
+    background-color: #111111;
+ }
+}
+
+.changeListing--generic {
+  &::before {
+    background-color: #111111;
+  }
+}
+
+.changeListing--recordAdded,
+.changeListing--zoneAdded {
+  &::before {
+    background-color: #0070F3;
+  }
+}
+
+.changeListing--recordDataChanged,
+.changeListing--zoneAttributeChanged {
+  &::before {
+    background-color: #7928CA;
+  }
+}
+
+.changeListing--recordDeleted,
+.changeListing--zoneDeleted {
+  &::before {
+    background-color: #E00;
+  }
+}
+
+.changeListing_desc {
+  flex: 1 1 auto;
+  margin: 0 12px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.changeListing__timestamp {
+  color: #777777;
+  flex: 0 0 auto;
+  font-size: 14px;
+  white-space: nowrap;
+}

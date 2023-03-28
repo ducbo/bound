@@ -1,0 +1,54 @@
+.header {
+  margin: 0 0 2px;
+}
+
+.header__action:not(:last-of-type) {
+  margin: 0 6px 0 0;
+}
+
+.header__actions {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  margin: 0 0 0 12px;
+}
+
+.header__container {
+  align-items: center;
+  display: flex;
+  height: 96px;
+}
+
+.header__content {
+  flex: 1 1 auto;
+}
+
+.header__crumbs {
+  display: flex;
+  color: #777777;
+  font-size: 14px;
+  margin-bottom: -20px;
+}
+
+.header__crumb:not(:first-of-type):before {
+  content: "\00bb";
+  margin: 0 4px 0 0;
+}
+
+.header__crumb + .header__crumb {
+  margin: 0 0 0 8px;
+}
+
+.header__crumbLink {
+  &:hover {
+    color: darken(#777777, 5%);
+    text-decoration: underline;
+  }
+}
+
+.header__title {
+  line-height: 40px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-top:12px;
+}

@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    = csrf_meta_tags
+    %meta{:charset => "utf-8"}
+    %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
+    %title #{@page_title} – Bound
+    = stylesheet_link_tag "application/application", "data-turbolinks-track" => "reload"
+    = javascript_include_tag "application", "data-turbolinks-track" => "reload"
+  %body
+    - if logged_in?
+      = render "shared/sidebar"
+    .content.container
+      - flash.each do |type, message|
+        %div{:class => "flashMessage flashMessage--#{type}"}
+          = message
+      = yield
+    .js-outlet{"data-turbolinks-permanent" => true}
+      .overlay

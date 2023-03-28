@@ -1,0 +1,25 @@
+.formFooter {
+  align-items: center;
+  display: flex;
+  margin-top: 24px;
+  flex-flow: row-reverse;
+}
+
+.formFooter__link {
+  text-decoration: underline;
+
+  &:hover {
+    color: darken(#777777, 5%);
+  }
+
+  &:active {
+    background: #eaeaea;
+    padding: 2px 0;
+  }
+}
+
+.formFooter__subText {
+  color: #777777;
+  flex: 1 1 auto;
+  margin: 0 8px;
+}

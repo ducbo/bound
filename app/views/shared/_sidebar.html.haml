@@ -1,0 +1,48 @@
+%header.sidebar
+  = link_to root_path, :class => "sidebar__branding sidebar__section" do
+    .sidebar__container.sidebar__logo
+      = image_tag "bound.svg", :class => "sidebar__logoIcon"
+      %h1.sidebar__logoText
+        Bound
+  %nav.sidebar__nav
+    %ul.sidebar__menu
+      %li.sidebar__menuItem{:class => ("is-active" if @active_nav == :zones)}
+        = link_to root_path, :class => "sidebar__menuLink" do
+          %span.sidebar__menuLinkText
+            Zones
+      %li.sidebar__menuItem{:class => ("is-active" if @active_nav == :users)}
+        = link_to users_path, :class => "sidebar__menuLink" do
+
+          %span.sidebar__menuLinkText
+            Users
+      %li.sidebar__menuItem{:class => ("is-active" if @active_nav == :tokens)}
+        = link_to api_tokens_path, :class => "sidebar__menuLink" do
+          %span.sidebar__menuLinkText
+            API Tokens
+      %li.sidebar__menuItem{:class => ("is-active" if @active_nav == :publish)}
+        = link_to publish_path, :class => "sidebar__menuLink" do
+          %span.sidebar__menuLinkText
+            Publish
+          - if changes_pending > 0
+            &#8239;&#8239;&#8239;
+            %span.lozenge.lozenge--black
+              #{pluralize(changes_pending, "Change")}
+  %ul.sidebar__footer
+    %p.sidebar__menuItem
+      %details
+        %summary.sidebar__menuLinkText.summary
+          #{current_user.description}
+          %span.sidebar__menuLinkText__caret
+        %div.sidebar__logoutMenu
+          %div.sidebar__logoutMenu__section
+            %div.sidebar__logoutMenu__text
+              %p.authText
+                Logged In As:
+              %p.authText__user
+                #{current_user.provider}/#{current_user.description}
+          %div.sidebar__logoutMenu__section
+            %strong
+              = link_to "Log Out", logout_path, :class => "sidebar__logoutMenu__link",  :method => :delete
+          %div.sidebar__logoutMenu__section
+            = link_to "Bound on GitHub", 'https://github.com/francisschmaltz/bound', :class => "sidebar__logoutMenu__link"
+        

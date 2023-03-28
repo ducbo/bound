@@ -1,0 +1,46 @@
+- @page_title = @zone.name
+- breadcrumb "Zones", zones_path
+- header_action "Edit", edit_zone_path(@zone), :color => :secondary
+- header_action "Import", import_zone_path(@zone), :color => :secondary
+- header_action "View Raw Zone File", zone_file_zone_path(@zone), :color => :secondary
+- header_action "Add Record", new_zone_record_path(@zone), :color => :black
+
+= render_header @zone.description
+
+.container
+  - if @records.any?
+    .module
+      = text_field_tag :q, "", :autofocus => true, :class => "formControl js-searchObjects", :placeholder => "Search for a record&hellip;".html_safe
+  .box.module
+    %table.zoneTable
+      %thead.zoneTable__header
+        %tr
+          %td.zoneTable__col.zoneTable__col--default
+            Type
+          %td.zoneTable__col.zoneTable__col--default
+            Name
+          %td.zoneTable__col.zoneTable__col--default
+            TTL
+          %td.zoneTable__col.zoneTable__col--data
+            Data
+          %td.zoneTable__col.zoneTable__col--default
+            &#8239;
+      %tbody
+        - if @records.empty?
+          %tr
+            %td{:colspan => 5} There are no records for this zone yet.
+        - else
+          - @records.each_with_index do |record, index|
+            %tr.boxItem.zoneTable__row.js-zoneRecord.js-objectItem
+              %td.zoneTable__col.zoneTable__col--default
+                = record_type_tag record.type
+              %td.zoneTable__col.zoneTable__col--default.js-objectItem__text
+                = record.name || "@"
+              %td.zoneTable__col.zoneTable__col--default
+                = record.ttl
+              %td.zoneTable__col.zoneTable__col--data.js-objectItem__text
+                = record.data
+              %td.zoneTable__col.zoneTable__col--default
+                = link_to "Edit Record", edit_zone_record_path(@zone, record), :class => "button button--small button--blue--ghost"
+    %p.emptyState.is-hidden.js-emptyState
+      No records match your search query…

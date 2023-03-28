@@ -1,0 +1,89 @@
+mysql:
+  host: mysql-tranduc.alwaysdata.net
+  port: 3306
+  username: tranduc
+  password: Mekiep123
+  database: tranduc_bound
+
+bind:
+  zone_export_path: /home/tranduc/zones
+  zone_clauses_file: /home/tranduc/zones/zones.conf
+  commands:
+    reload: /home/tranduc/dns.sh
+    check_config: /home/tranduc/dns.sh
+
+# Uncomment this section if you'd like Bound to copy zone files to alternative hosts.
+#
+replication:
+#   # This is the IP addresses for the master server where slaves are able to
+#   # request zone configuration. This information is included in the zone clauses
+#   # that is pushed to slaves.
+   masters:
+     - 127.0.0.1
+#
+#   # Defines who should receive notifications sent by the master. If 'yes',
+#   # the NS records for the zone will be notified, if 'explicit' only those which
+#   # are configured as 'also-notify' and if 'no' nothing will be notified. This
+#   # can be configured for the master and the slave zone clauses independently.
+#   notify:
+#     master: "yes"
+#     slave: "no"
+#
+#   # These are the slaves that should receive a copy of the zone file and reloaded
+#   # then configuration is changed. Configuration is pushed to slaves using SSH
+#   # and should be secured with an SSH key for the user that is running Bound.
+   slaves:
+     -
+       ip_address: 47.87.141.214
+       username: root
+       key_path: /home/tranduc/.ssh/id_rsa
+       ssh_port: 22
+       zone_file_path: /etc/knot/zones/zones.conf
+       reload_command: systemctl restart knot
+
+rails:
+  environment: production
+  # Replace this key with a new random key. You can generate one using
+  # `bundle exec rake secret` from the root of the application
+  secret_key: ad1a6538c2b3cb4f231fad413898ce6144712232b24676d13879eb8704c61fe23b5f8e41e7a519498a8c78c2a95875412052f76e202bf6af9e7394a13d1eb8f8
+
+auth:
+  strategy: github
+  description: GitHub OmniAuth
+  # Use for GHE
+  # site: https://github.YOURDOMAIN.com/api/v3
+  # authorize_url: https://github.YOURDOMAIN.com/login/oauth/authorize
+  # token_url: https://github.YOURDOMAIN.com/login/oauth/access_token
+  client_key: c37adadac1f682661775
+  client_secret: 89189aa86c6d38f1c4ef9e330bd6dd75845ccb9b
+  scopes: null
+  # Replace host with Bound URL
+  host: http://localhost:5000
+  # Callback URL is host^^/auth/github/callback
+
+smtp:
+  host: localhost
+  username: null
+  password: null
+  from_address: Bound <bound@example.com>
+
+web:
+  protocol: http
+  host: localhost:5000
+
+web_server:
+  bind_address: 0.0.0.0
+  port: 5000
+  max_threads: 5
+
+dns_defaults:
+  primary_ns: ns1.dnsking.ch
+  email_address: admin@biz.tg
+  refresh_time: 3600
+  retry_time: 120
+  expiration_time: 21600
+  max_cache: 600
+  ttl: 3600
+  nameservers:
+    - ns1.dnsking.ch.
+    - ns2.dnsking.ch.
